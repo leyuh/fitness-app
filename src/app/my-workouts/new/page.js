@@ -54,19 +54,33 @@ export default function NewWorkout() {
             if (i === sets.length - 1) continue;
             updatedSets.push({
                 "name": "Rest",
-                duration
+                "duration": duration
             });
         }
 
-        setSets(updatedSets);
+        return updatedSets;
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        let updatedSets = sets;
+
         if (durationType !== "Custom") {
-            generateRests(60-durationType);
-            console.log(sets);
+            updatedSets = generateRests(60-durationType);
         }
+
+        let res = await fetch("/api/workouts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                desc,
+                sets: updatedSets
+            })
+        });
 
         setRedirectToWorkouts(true);
     };
@@ -74,7 +88,7 @@ export default function NewWorkout() {
     if (redirectToWorkouts) {
         return redirect("/my-workouts");
     };
-    
+
     return <section className="mt-12">
 
         <form onSubmit={handleSubmit} className="bg-background2 max-w-xl mx-auto rounded-sm px-6 py-2">
@@ -108,7 +122,7 @@ export default function NewWorkout() {
                     {DURATION_OPTIONS.map((option, i) => (
                         <button
                             type="button"
-                            className={`text-white button h-8 w-16 ${durationType !== option ? "bg-primary" : "border-2 border-white"}`}
+                            className={`text-white button h-8 w-16 ${durationType !== option ? "primary-gradient bg-primary" : "border-2 border-white"}`}
                             key={i}
                             onClick={() => setDurationType(option)}
                         >
@@ -170,12 +184,12 @@ export default function NewWorkout() {
 
                 <div className="gap-2 flex justify-end h-14 items-center">
                     <button
-                        className="button w-20 h-8 bg-primary text-white"
+                        className="button w-20 h-8 primary-gradient bg-primary text-white"
                         type="button"
                         onClick={() => {
                             setSets(prev => [...prev, {
                                 "name": "",
-                                "duration": undefined
+                                "duration": durationType === "Custom" ? undefined : durationType
                             }])
                         }}
                     >
@@ -202,7 +216,7 @@ export default function NewWorkout() {
 
             <button
                 type="submit"
-                className="button bg-primary w-24 h-10 font-bold text-lg text-white mx-auto"
+                className="button bg-primary primary-gradient w-24 h-10 font-bold text-lg text-white mx-auto"
             >Create</button>
 
         </form>

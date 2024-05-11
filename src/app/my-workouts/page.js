@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Link from "next/link";
 
@@ -9,60 +9,19 @@ import Plus from "@/icons/Plus";
 
 export default function MyWorkouts() {
 
-    const [myWorkouts, setMyWorkouts] = useState([
-        {
-            "name": "My Bicep Workout",
-            "desc": "Lorem ipsum dolor sit amet",
-            "duration": 120,
-            "targets": ["biceps", "shoulders"],
-            "sets": [
-                {
-                    "name": "Bicep curl",
-                    "duration": 40
-                },
-                {
-                    "name": "Rest",
-                    "duration": 20
-                },
-                {
-                    "name": "Hammer curl",
-                    "duration": 40
-                },
-                {
-                    "name": "Rest",
-                    "duration": 20
-                }
-            ]
-        },
-        {
-            "name": "My Tricep Workout",
-            "desc": "Lorem ipsum dolor sit amet",
-            "duration": 120,
-            "targets": ["biceps", "shoulders"],
-            "sets": [
-                {
-                    "name": "Bicep curl",
-                    "duration": 40
-                },
-                {
-                    "name": "Rest",
-                    "duration": 20
-                },
-                {
-                    "name": "Hammer curl",
-                    "duration": 40
-                },
-                {
-                    "name": "Rest",
-                    "duration": 20
-                }
-            ]
-        },
-    ]);
+    const [myWorkouts, setMyWorkouts] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/workouts").then(res => {
+            res.json().then(data => {
+                setMyWorkouts(data);
+            })
+        })
+    }, [])
 
     return (
         <section id="my-workouts" className="mt-8">
-            <h1 className="text-center text-2xl font-bold text-white">My Workouts</h1>
+            <h1 className="text-center text-3xl font-bold text-white">My Workouts</h1>
 
             <div className="max-w-xl mx-auto">
                 <ul className="workouts-list">
