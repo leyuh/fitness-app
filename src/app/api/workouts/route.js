@@ -12,6 +12,35 @@ export async function POST (req) {
 
     mongoose.connect(process.env.MONGO_URI);
 
-    const newWorkout = await Workout.create(body);
+    let updatedBody = {
+        "name": body.name,
+        "desc": body.desc,
+        "sets": body.sets.map((set, i) => ({
+            "name": set.name,
+            "duration": set.duration || 0
+        })),
+        "durationType": body.durationType
+    }
+
+    const newWorkout = await Workout.create(updatedBody);
     return Response.json(newWorkout);
+}
+
+export async function PUT (req) {
+    const { id, name, desc, sets, durationType } = await req.json();
+
+    mongoose.connect(process.env.MONGO_URI);
+
+    let updatedBody = {
+        "name": name,
+        "desc": desc,
+        "sets": sets.map((set, i) => ({
+            "name": set.name,
+            "duration": set.duration || 0
+        })),
+        "durationType": durationType
+    }
+
+    const updatedWorkout = await Workout.findByIdAndUpdate(id, updatedBody);
+    return Response.json(true);
 }

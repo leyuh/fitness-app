@@ -30,15 +30,43 @@ export default function Play() {
 
     const [isPaused, setIsPaused] = useState(true);
 
+    const generateRests = (duration, sets) => {
+        let updatedSets = [];
+
+        for (let i = 0; i < sets.length; i++) {
+            updatedSets.push(sets[i]);
+
+            if (i === sets.length - 1) continue;
+            updatedSets.push({
+                "name": "Rest",
+                "duration": duration
+            });
+        }
+
+        return updatedSets;
+    }
+
     useEffect(() => {
         fetch("/api/workouts").then(res => {
             res.json().then(data => {
-                console.log(data);
                 let workout = data.filter(item => item._id === id);
+                
                 if (workout.length > 0) {
                     workout = workout[0];
+
+                    if (workout.durationType !== "Custom") {
+                        workout.sets = generateRests(60-workout.durationType, workout.sets);
+                    }
+                    
+                    workout.sets = [{
+                        "name": "Get ready!",
+                        "duration": 3
+                    }, ...workout.sets];
+
+                    console.log(workout.sets);
                     setName(workout.name);
                     setSets(workout.sets);
+
                     setCurrentSetIndex(0);
                 }
             })
@@ -56,6 +84,7 @@ export default function Play() {
     }, [isPaused]);
 
     useEffect(() => {
+
         if (currentSetIndex === sets.length - 1 && currentSetTimeRemaining <= 0) {
             setIsPaused(true);
             return;
@@ -72,7 +101,6 @@ export default function Play() {
         console.log(currentSetIndex);
         setCurrentSetTimeRemaining(sets[currentSetIndex]?.duration);
     }, [currentSetIndex])
-
 
     const getCurrentSetProgressPercentage = () => {
         if (!sets[currentSetIndex]) return 0;
@@ -134,7 +162,9 @@ export default function Play() {
                 </ControlButton>
 
                 <ControlButton
-                    handler={() => setIsPaused(prev => !prev)}
+                    handler={() => {
+                        setIsPaused(prev => !prev);
+                    }}
                 >
                     {isPaused ? <PlayIcon 
                         dimensions="w-8 h-full"

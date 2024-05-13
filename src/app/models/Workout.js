@@ -19,7 +19,11 @@ const WorkoutSchema = new Schema({
     },
     sets: [{
         type: SetSchema
-    }]
+    }],
+    durationType: {
+        type: Schema.Types.Mixed,
+        required: true
+    }
 }, { timestamps: true })
 
 export const Workout = models?.Workout || model("Workout", WorkoutSchema);

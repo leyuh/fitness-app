@@ -1,3 +1,4 @@
+import Edit from "@/icons/Edit";
 import Play from "@/icons/Play";
 import Link from "next/link";
 
@@ -13,17 +14,26 @@ export default function WorkoutItem(props) {
 
     return <li className="workout-item mt-4 w-full bg-background2 p-4 rounded-sm flex">
         <div>
-            <h4 className="font-bold text-xl text-gray-100">{name}</h4>
+            <h4 className="font-bold text-2xl text-gray-100">{name}</h4>
             <p className="text-primary text-sm">{desc}</p>
             <p className="text-gray-400 text-sm">by {creator}</p>
         </div>
 
-        <div className="flex ml-auto">
+        <div className="flex ml-auto gap-4">
             <Link
                 href={`/play/${_id}`}
-                className="button w-8 h-8 text-white bg-primary primary-gradient"
+                className="button w-8 h-8 text-primary"
             >
                 <Play 
+                    dimensions={"w-8 h-full"}
+                />
+            </Link>
+
+            <Link
+                href={`/my-workouts/edit/${_id}`}
+                className="button w-8 h-8 text-primary"
+            >
+                <Edit 
                     dimensions={"w-6 h-full"}
                 />
             </Link>

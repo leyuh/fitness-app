@@ -1,17 +1,10 @@
 "use client"
-
-import Back from "@/icons/Back";
-import Cancel from "@/icons/Cancel";
-import Plus from "@/icons/Plus";
-import Link from "next/link";
-
+import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import WorkoutForm from "@/components/WorkoutForm";
 import { redirect } from "next/navigation";
 
-import { useState, useEffect } from "react";
-
-
-export default function NewWorkout() {
+export default function Edit() {
     const [name, setName] = useState("My Workout");
     const [desc, setDesc] = useState("");
     const [durationType, setDurationType] = useState(30);
@@ -20,16 +13,37 @@ export default function NewWorkout() {
 
     const [redirectToWorkouts, setRedirectToWorkouts] = useState(false);
 
+    const { id } = useParams();
+
+
+    useEffect(() => {
+        fetch("/api/workouts").then(res => {
+            res.json().then(data => {
+                let workout = data.filter(item => item._id === id);
+                console.log(workout);
+                if (workout.length > 0) {
+                    workout = workout[0];
+
+                    setName(workout.name);
+                    setDesc(workout.desc);
+                    setSets(workout.sets);
+                    setDurationType(workout.durationType);
+
+                }
+            })
+        })
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         let res = await fetch("/api/workouts", {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                id,
                 name,
                 desc,
                 sets,
@@ -55,8 +69,9 @@ export default function NewWorkout() {
             setSets={setSets}
             durationType={durationType}
             setDurationType={setDurationType}
-            buttonLabel={"Create"}
+            buttonLabel={"Save"}
         />
         
     </section>
+
 }
