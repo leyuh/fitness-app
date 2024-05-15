@@ -11,6 +11,16 @@ body {
   @apply rounded-md block my-4
 }
 
+.icon-transition {
+  transition-duration: 250ms;
+  transition-property: all;
+  transition-timing-function: ease-out;
+}
+
+.icon-transition:hover {
+  color: white;
+}
+
 .primary-gradient {
   background-image: linear-gradient(to bottom right, #ff7a3d, #ff5d13);
 }

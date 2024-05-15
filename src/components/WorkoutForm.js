@@ -22,6 +22,7 @@ const FormItem = ({ title, state, setState }) => {
 export default function WorkoutForm (props)  {
 
     const {
+        formTitle,
         handleSubmit,
         name,
         setName,
@@ -56,7 +57,7 @@ export default function WorkoutForm (props)  {
                 />
             </Link>
 
-            <h1 className="font-bold text-2xl text-white text-center grow">New Workout</h1>
+            <h1 className="font-bold text-2xl text-white text-center grow">{formTitle}</h1>
         </div>
 
         <FormItem 

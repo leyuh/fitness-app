@@ -60,6 +60,7 @@ export default function Edit() {
 
     return <section className="mt-12">
         <WorkoutForm 
+            formTitle={"Edit Workout"}
             handleSubmit={handleSubmit}
             name={name}
             setName={setName}

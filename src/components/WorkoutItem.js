@@ -22,7 +22,7 @@ export default function WorkoutItem(props) {
         <div className="flex ml-auto gap-4">
             <Link
                 href={`/play/${_id}`}
-                className="button w-8 h-8 text-primary"
+                className="button w-8 h-8 text-primary icon-transition"
             >
                 <Play 
                     dimensions={"w-8 h-full"}
@@ -31,7 +31,7 @@ export default function WorkoutItem(props) {
 
             <Link
                 href={`/my-workouts/edit/${_id}`}
-                className="button w-8 h-8 text-primary"
+                className="button w-8 h-8 text-primary icon-transition"
             >
                 <Edit 
                     dimensions={"w-6 h-full"}

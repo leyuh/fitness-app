@@ -46,6 +46,7 @@ export default function NewWorkout() {
 
     return <section className="mt-12">
         <WorkoutForm 
+            formTitle={"New Workout"}
             handleSubmit={handleSubmit}
             name={name}
             setName={setName}
