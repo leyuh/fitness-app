@@ -10,6 +10,10 @@ const SetSchema = new Schema({
 })
 
 const WorkoutSchema = new Schema({
+    creator: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true

@@ -5,12 +5,11 @@ import Link from "next/link";
 export default function WorkoutItem(props) {
     const {
         _id,
+        creator,
         name,
         desc,
         sets
     } = props;
-
-    let creator = "me";
 
     return <li className="workout-item mt-4 w-full bg-background2 p-4 rounded-sm flex">
         <div>

@@ -9,12 +9,13 @@ import WorkoutForm from "@/components/WorkoutForm";
 import { redirect } from "next/navigation";
 
 import { useState, useEffect } from "react";
-
+import { useSession } from "next-auth/react";
 
 export default function NewWorkout() {
     const [name, setName] = useState("My Workout");
     const [desc, setDesc] = useState("");
     const [durationType, setDurationType] = useState(30);
+    const { data: session, status } = useSession();
 
     const [sets, setSets] = useState([]);
 
@@ -30,6 +31,7 @@ export default function NewWorkout() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                creator: session?.user?.username,
                 name,
                 desc,
                 sets,

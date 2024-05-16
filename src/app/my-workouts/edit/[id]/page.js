@@ -5,6 +5,7 @@ import WorkoutForm from "@/components/WorkoutForm";
 import { redirect } from "next/navigation";
 
 export default function Edit() {
+
     const [name, setName] = useState("My Workout");
     const [desc, setDesc] = useState("");
     const [durationType, setDurationType] = useState(30);

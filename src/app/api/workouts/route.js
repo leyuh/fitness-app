@@ -13,6 +13,7 @@ export async function POST (req) {
     mongoose.connect(process.env.MONGO_URL);
 
     let updatedBody = {
+        "creator": body.creator,
         "name": body.name,
         "desc": body.desc,
         "sets": body.sets.map((set, i) => ({
@@ -27,7 +28,7 @@ export async function POST (req) {
 }
 
 export async function PUT (req) {
-    const { id, name, desc, sets, durationType } = await req.json();
+    const { id, creator, name, desc, sets, durationType } = await req.json();
 
     mongoose.connect(process.env.MONGO_URL);
 

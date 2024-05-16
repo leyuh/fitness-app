@@ -20,10 +20,6 @@ export default function MyWorkouts() {
         })
     }, [])
 
-    useEffect(() => {
-        console.log(status);
-        console.log(session);
-    }, [status, session])
 
 
     return (
