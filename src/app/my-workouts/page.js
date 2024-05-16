@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 import WorkoutItem from "@/components/WorkoutItem";
@@ -10,6 +10,7 @@ import Plus from "@/icons/Plus";
 export default function MyWorkouts() {
 
     const [myWorkouts, setMyWorkouts] = useState([]);
+    const { data: session, status } = useSession();
 
     useEffect(() => {
         fetch("/api/workouts").then(res => {
@@ -18,6 +19,12 @@ export default function MyWorkouts() {
             })
         })
     }, [])
+
+    useEffect(() => {
+        console.log(status);
+        console.log(session);
+    }, [status, session])
+
 
     return (
         <section id="my-workouts" className="mt-8">

@@ -2,10 +2,12 @@
 import { useState } from "react"
 import FormItem from "@/components/FormItem";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const AuthForm = ({title, handleSubmit, showSignUp, setShowSignUp}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
 
     return <form className="bg-background2 max-w-sm p-6 pt-8 m-auto rounded-sm" onSubmit={(e) => {
         handleSubmit(e, { username, password });
@@ -54,15 +56,27 @@ export default function Auth() {
 
     const [showSignUp, setShowSignUp] = useState(false);
 
+    const router = useRouter();
+
     const handleSignIn = async (e, data) => {
         e.preventDefault();
 
-        const res = await signIn("credentials", {
-            ...data,
-            callbackUrl: "/my-workouts"
-        });
-
-        console.log(res);
+        try {
+            console.log(data);
+            const res = await signIn("credentials", {
+                ...data,
+                redirect: false
+            });
+    
+            if (res.error) {
+                return;
+            }
+        
+            router.replace("my-workouts");
+        } catch (err) {
+            console.log(err);
+        }
+        
     }
 
     const handleSignUp = async (e, data) => {
