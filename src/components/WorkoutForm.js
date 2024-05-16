@@ -3,8 +3,13 @@ import { useState, useEffect } from "react";
 import Back from "@/icons/Back";
 import Cancel from "@/icons/Cancel";
 import FormItem from "./FormItem";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function WorkoutForm (props)  {
+
+    const { data: session, status } = useSession();
+    const router = useRouter();
 
     const {
         formTitle,
@@ -17,6 +22,7 @@ export default function WorkoutForm (props)  {
         setSets,
         durationType,
         setDurationType,
+        setPublished,
         buttonLabel
     } = props;
 
@@ -156,10 +162,23 @@ export default function WorkoutForm (props)  {
 
         </div>
 
-        <button
-            type="submit"
-            className="button bg-primary primary-gradient w-24 h-10 font-bold text-lg text-white mx-auto"
-        >{buttonLabel}</button>
+        <div className="flex gap-4 justify-center">
+            <button
+                type="submit"
+                className="button bg-primary primary-gradient w-24 h-10 font-bold text-lg text-white"
+            >{buttonLabel}</button>
+
+            {buttonLabel === "Save" && <button
+                type="button"
+                onClick={(e) => {
+                    setPublished(true);
+                    handleSubmit(e, true, session?.user?._id);
+                }}
+                className="button bg-primary primary-gradient w-24 h-10 font-bold text-lg text-white"
+            >
+                Publish
+            </button>}
+        </div>
 
     </form>
 }

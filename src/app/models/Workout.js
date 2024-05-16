@@ -27,7 +27,14 @@ const WorkoutSchema = new Schema({
     durationType: {
         type: Schema.Types.Mixed,
         required: true
-    }
+    },
+    published: {
+        type: Boolean,
+        required: true
+    },
+    savers: [{
+        type: Schema.Types.ObjectId
+    }]
 }, { timestamps: true })
 
 export const Workout = models?.Workout || model("Workout", WorkoutSchema);

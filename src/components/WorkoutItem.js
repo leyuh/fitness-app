@@ -1,15 +1,17 @@
-import Edit from "@/icons/Edit";
-import Play from "@/icons/Play";
-import Link from "next/link";
 
 export default function WorkoutItem(props) {
+    const {
+        workoutProps,
+        children
+    } = props;
+
     const {
         _id,
         creator,
         name,
         desc,
         sets
-    } = props;
+    } = workoutProps;
 
     return <li className="workout-item mt-4 w-full bg-background2 p-4 rounded-sm flex">
         <div>
@@ -19,23 +21,7 @@ export default function WorkoutItem(props) {
         </div>
 
         <div className="flex ml-auto gap-4">
-            <Link
-                href={`/play/${_id}`}
-                className="button w-8 h-8 text-primary icon-transition"
-            >
-                <Play 
-                    dimensions={"w-8 h-full"}
-                />
-            </Link>
-
-            <Link
-                href={`/my-workouts/edit/${_id}`}
-                className="button w-8 h-8 text-primary icon-transition"
-            >
-                <Edit 
-                    dimensions={"w-6 h-full"}
-                />
-            </Link>
+            {children}
         </div>
     </li>
 }

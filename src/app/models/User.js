@@ -9,10 +9,7 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
-    },
-    savedWorkouts: [{
-        type: Schema.Types.ObjectId
-    }]
+    }
 }, { timestamps: true })
 
 export const User = models?.User || model("User", UserSchema);

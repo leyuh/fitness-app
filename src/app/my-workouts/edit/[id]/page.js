@@ -14,6 +14,8 @@ export default function Edit() {
 
     const [redirectToWorkouts, setRedirectToWorkouts] = useState(false);
 
+    const [published, setPublished] = useState(false);
+
     const { id } = useParams();
 
 
@@ -29,13 +31,14 @@ export default function Edit() {
                     setDesc(workout.desc);
                     setSets(workout.sets);
                     setDurationType(workout.durationType);
-
+                    setPublished(workout.published);
                 }
             })
         })
     }, [])
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e, publish=false, publisher=null) => {
+        console.log(published);
         e.preventDefault();
 
         let res = await fetch("/api/workouts", {
@@ -48,7 +51,9 @@ export default function Edit() {
                 name,
                 desc,
                 sets,
-                durationType
+                durationType,
+                published: publish,
+                savers: [publisher]
             })
         });
 
@@ -58,6 +63,10 @@ export default function Edit() {
     if (redirectToWorkouts) {
         return redirect("/my-workouts");
     };
+
+    if (published) {
+        return redirect("/my-workouts");
+    }
 
     return <section className="mt-12">
         <WorkoutForm 
@@ -71,6 +80,7 @@ export default function Edit() {
             setSets={setSets}
             durationType={durationType}
             setDurationType={setDurationType}
+            setPublished={setPublished}
             buttonLabel={"Save"}
         />
         

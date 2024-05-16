@@ -7,19 +7,31 @@ import Link from "next/link";
 import WorkoutItem from "@/components/WorkoutItem";
 import Plus from "@/icons/Plus";
 
+import { PlayBtn, EditBtn, SaveBtn, UnsaveBtn } from "@/components/WorkoutItemButtons";
+
 export default function MyWorkouts() {
 
     const [myWorkouts, setMyWorkouts] = useState([]);
     const { data: session, status } = useSession();
 
-    useEffect(() => {
+    const myWorkoutsFilter = (w) => (w.savers.indexOf(session?.user?._id) !== -1) || (w.creator === session?.user.username && !w.published);
+
+    const fetchMyWorkouts = async () => {
         fetch("/api/workouts").then(res => {
             res.json().then(data => {
-                setMyWorkouts(data);
+                setMyWorkouts(data.filter(myWorkoutsFilter));
             })
         })
-    }, [])
+    }
 
+    useEffect(() => {
+        console.log(session?.user);
+        fetchMyWorkouts();
+    }, [status])
+
+    useEffect(() => {
+        fetchMyWorkouts();
+    }, [])
 
 
     return (
@@ -30,9 +42,24 @@ export default function MyWorkouts() {
                 <ul className="workouts-list">
                     {myWorkouts.map((item, i) => (
                         <WorkoutItem 
-                            {...item}
+                            workoutProps={item}
                             key={i}
-                        />
+                        >
+                            <PlayBtn 
+                                workoutId={item._id}
+                            />
+                            {(!item.published && item.creator === session?.user?.username) && <EditBtn 
+                                workoutId={item._id}
+                            />}
+                            {(item.published) && <UnsaveBtn 
+                                userId={session?.user?._id}
+                                savers={item.savers}
+                                workoutId={item._id}
+                                setWorkouts={setMyWorkouts}
+                                filter={myWorkoutsFilter}
+                            />}
+
+                        </WorkoutItem>
                     ))}
                 </ul>
 
