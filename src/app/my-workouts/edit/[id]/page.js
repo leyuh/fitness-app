@@ -82,6 +82,7 @@ export default function Edit() {
             setDurationType={setDurationType}
             setPublished={setPublished}
             buttonLabel={"Save"}
+            workoutId={id}
         />
         
     </section>

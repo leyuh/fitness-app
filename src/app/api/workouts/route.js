@@ -38,3 +38,12 @@ export async function PUT (req) {
     const workouts = await Workout.find();
     return Response.json(workouts);
 }
+
+export async function DELETE (req) {
+    const { workoutId, username } = await req.json();
+
+    mongoose.connect(process.env.MONGO_URL);
+
+    const deletedWorkout = await Workout.findOneAndDelete({ _id: workoutId, creator: username })
+    return Response.json(true);
+}

@@ -23,7 +23,8 @@ export default function WorkoutForm (props)  {
         durationType,
         setDurationType,
         setPublished,
-        buttonLabel
+        buttonLabel,
+        workoutId = null
     } = props;
 
     const DURATION_OPTIONS = [30, 40, 45, "Custom"];
@@ -163,12 +164,33 @@ export default function WorkoutForm (props)  {
         </div>
 
         <div className="flex gap-4 justify-center">
+
+            {workoutId && <button
+                type="button"
+                onClick={async (e) => {
+                    const res = await fetch("/api/workouts", {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            workoutId,
+                            username: session?.user?.username
+                        })
+                    });
+                    router.replace("/my-workouts");
+                }}
+                className="button bg-primary primary-gradient w-24 h-10 font-bold text-lg text-white"
+            >
+                Delete
+            </button>}
+
             <button
                 type="submit"
                 className="button bg-primary primary-gradient w-24 h-10 font-bold text-lg text-white"
             >{buttonLabel}</button>
 
-            {buttonLabel === "Save" && <button
+            {workoutId && <button
                 type="button"
                 onClick={(e) => {
                     setPublished(true);
@@ -178,6 +200,7 @@ export default function WorkoutForm (props)  {
             >
                 Publish
             </button>}
+
         </div>
 
     </form>
