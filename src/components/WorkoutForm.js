@@ -2,22 +2,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import Back from "@/icons/Back";
 import Cancel from "@/icons/Cancel";
-
-const FormItem = ({ title, state, setState }) => {
-    return (
-        <div className="flex items-center my-4">
-            <h2 className="w-40 text-primary text-lg font-bold capitalize">{title}</h2>
-            <input
-                type="text"
-                id={title}
-                placeholder={title}
-                value={state}
-                onChange={e => setState(e.target.value)}
-                className="grow rounded-sm py-1 px-2"
-            />
-        </div>
-    )
-}
+import FormItem from "./FormItem";
 
 export default function WorkoutForm (props)  {
 

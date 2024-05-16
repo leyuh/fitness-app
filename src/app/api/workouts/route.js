@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { Workout } from "@/app/models/Workout";
 
 export async function GET () {
-    mongoose.connect(process.env.MONGO_URI);
+    mongoose.connect(process.env.MONGO_URL);
 
     return Response.json(await Workout.find());
 }
@@ -10,7 +10,7 @@ export async function GET () {
 export async function POST (req) {
     const body = await req.json();
 
-    mongoose.connect(process.env.MONGO_URI);
+    mongoose.connect(process.env.MONGO_URL);
 
     let updatedBody = {
         "name": body.name,
@@ -29,7 +29,7 @@ export async function POST (req) {
 export async function PUT (req) {
     const { id, name, desc, sets, durationType } = await req.json();
 
-    mongoose.connect(process.env.MONGO_URI);
+    mongoose.connect(process.env.MONGO_URL);
 
     let updatedBody = {
         "name": name,
