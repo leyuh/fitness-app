@@ -43,8 +43,8 @@ export default function WorkoutForm (props)  {
 
 
 
-    return <>
-        <form onSubmit={handleSubmit} className="bg-background2 max-w-xl mx-auto rounded-sm px-6 py-2">
+    return <div className="flex flex-col items-center">
+        <form onSubmit={handleSubmit} className="bg-background2 max-w-xl rounded-sm px-6 py-2">
             <div className="flex items-center my-4">
                 <Link href="/my-workouts" className="button w-10 h-10 text-white">
                     <Back 
@@ -87,7 +87,7 @@ export default function WorkoutForm (props)  {
             <h2 className="w-40 text-primary text-lg font-bold">Sets</h2>
 
             <div className="sets-div">
-                <ul>
+                <ul className="max-h-[250px] overflow-y-scroll">
                     {sets.map((set, i) => (
                         <li key={i} className="mt-2 bg-background p-2 rounded-sm">
                             <input
@@ -223,9 +223,9 @@ export default function WorkoutForm (props)  {
 
         </form>
 
-        {confirmationPanel && <ConfirmationPanel 
+        {<ConfirmationPanel 
             data={confirmationPanel}
             setConfirmationPanel={setConfirmationPanel}
         />}
-    </>
+    </div>
 }

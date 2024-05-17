@@ -106,12 +106,7 @@ export default function Play() {
         if (!sets[currentSetIndex]) return 0;
         return 100*((sets[currentSetIndex].duration - currentSetTimeRemaining) / sets[currentSetIndex].duration);
     }
-
-    const getWorkoutProgress = () => {
-        return 0;
-    }
-
-
+    
     return <section className="mt-8 max-w-xl mx-auto">
         <div className="flex items-center my-4">
             <Link href="/my-workouts" className="button w-10 h-10 text-white">
@@ -130,8 +125,8 @@ export default function Play() {
                 <div className="rounded-full h-full w-full flex justify-center items-center" style={{
                     backgroundImage: `conic-gradient(#ff6219 ${getCurrentSetProgressPercentage()}%, #1e2021 ${getCurrentSetProgressPercentage()}%)`
                 }}>
-                    <div className="rounded-full bg-background w-[75%] h-[75%] flex items-center justify-center">
-                        <h1 className="text-white text-6xl font-bold text-center">{currentSetTimeRemaining}</h1>
+                    <div className="rounded-full bg-background w-[70%] h-[70%] flex items-center justify-center">
+                        <h1 className="text-white text-7xl font-bold text-center">{currentSetTimeRemaining}</h1>
                     </div>
                 </div>
             </div>
@@ -143,7 +138,6 @@ export default function Play() {
         </div>
 
         <div className="mt-8">
-            <h2 className="font-bold text-4xl text-white text-center">{`${getWorkoutProgress()}%`}</h2>
 
             <div className="flex gap-4 items-center justify-center">
                 <ControlButton

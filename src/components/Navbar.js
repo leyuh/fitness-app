@@ -18,7 +18,9 @@ export default function Navbar() {
             <Link href={"/auth"}>Sign In</Link>
         )}
         <Link href={"/"}>Home</Link>
-        <Link href={"/my-workouts"}>My Workouts</Link>
+        {status === "authenticated" && (<>
+            <Link href={"/my-workouts"}>My Workouts</Link>
+        </>)}
         <Link href={"/browse"}>Browse</Link>
     </nav>
 }

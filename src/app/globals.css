@@ -4,7 +4,11 @@
 
 
 body {
-  @apply bg-background
+  @apply bg-background;
+  background-image: url("../icons/dumbbell.png");
+  background-size: 75px;
+  background-repeat: repeat;
+  overflow-y: hidden;
 }
 
 .button {
@@ -12,9 +16,16 @@ body {
 }
 
 .icon-transition {
+  transition-duration: 200ms;
+  transition-property: all;
+  transition-timing-function: ease-out;
+}
+
+.popup-transition {
   transition-duration: 250ms;
   transition-property: all;
   transition-timing-function: ease-out;
+  top: 30%;
 }
 
 .icon-transition:hover {
@@ -22,7 +33,7 @@ body {
 }
 
 .primary-gradient {
-  background-image: linear-gradient(to bottom right, #ff7a3d, #ff5d13);
+  background-image: linear-gradient(to bottom right, #ff813d, #ff600b);
 }
 
 .green-gradient {

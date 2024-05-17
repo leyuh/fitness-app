@@ -1,17 +1,20 @@
+import { useEffect, useState } from "react";
+
 export default function ConfirmationPanel ({ data, setConfirmationPanel }) {
 
-    const {
-        message,
-        submessage,
-        buttonText,
-        handler
-    } = data;
+    const [anim, setAnim] = useState(false);
 
-    return <div className="bg-background2 rounded-sm py-6 px-2 mt-4 mx-auto text-white block max-w-sm">
-        <h4 className="text-center font-bold text-lg">{message}</h4>
-        <p className="text-center">{submessage}</p>
 
-        <div className="flex justify-center gap-2">
+    useEffect(() => {
+        setAnim(prev => !prev);
+    }, [data])
+
+
+    return <div className={`bg-background2 rounded-sm py-6 px-2 absolute top-[100%] mx-auto text-white block max-w-sm ${anim && "popup-transition"} shadow-2xl`}>
+        <h4 className="text-center font-bold text-lg">{data?.message}</h4>
+        <p className="text-center">{data?.submessage}</p>
+
+        <div className="flex justify-center gap-4 mt-4">
             <button 
                 className="button bg-primary primary-gradient w-24 h-10 font-bold text-lg text-white"
                 onClick={() => setConfirmationPanel(null)}
@@ -20,9 +23,9 @@ export default function ConfirmationPanel ({ data, setConfirmationPanel }) {
             </button>
             <button 
                 className="button bg-primary primary-gradient w-24 h-10 font-bold text-lg text-white"
-                onClick={handler}
+                onClick={data?.handler}
             >
-                {buttonText}
+                {data?.buttonText}
             </button>
         </div>
     </div>

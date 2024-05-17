@@ -41,7 +41,7 @@ export default function Browse() {
                         >
                             <PlayBtn />
 
-                            {(item.savers.indexOf(session?.user?._id) === -1) && <SaveBtn 
+                            {(status === "authenticated" && item.savers.indexOf(session?.user?._id) === -1) && <SaveBtn 
                                 userId={session?.user?._id}
                                 savers={item.savers}
                                 workoutId={item._id}
@@ -49,7 +49,7 @@ export default function Browse() {
                                 filter={browseWorkoutsFilter}
                             />}
 
-                            {(item.savers.indexOf(session?.user?._id) !== -1) && <UnsaveBtn 
+                            {(status === "authenticated" && item.savers.indexOf(session?.user?._id) !== -1) && <UnsaveBtn 
                                 userId={session?.user?._id}
                                 savers={item.savers}
                                 workoutId={item._id}
