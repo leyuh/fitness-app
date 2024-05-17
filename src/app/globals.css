@@ -8,7 +8,7 @@ body {
   background-image: url("../icons/dumbbell.png");
   background-size: 75px;
   background-repeat: repeat;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 input[type="checkbox"] {
@@ -86,3 +86,5 @@ input[type="checkbox"]:checked::before{
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.filter-div::-webkit-scrollbar { display: none; }

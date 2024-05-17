@@ -6,7 +6,21 @@ import Save from "@/icons/Save";
 import Unsave from "@/icons/Unsave";
 import Like from "@/icons/Like";
 import Unlike from "@/icons/Unlike";
+import Info from "@/icons/Info";
 
+
+export const InfoBtn = ({ workoutId }) => {
+    return (
+        <Link
+            href={`/info/${workoutId}`}
+            className="button w-8 h-8 text-primary icon-transition"
+        >
+            <Info 
+                dimensions={"w-6 h-full"}
+            />
+        </Link>
+    )
+}
 
 export const PlayBtn = ({ workoutId }) => {
     return (
@@ -50,7 +64,7 @@ export const SaveBtn = ({ userId, savers, workoutId, setWorkouts, filter }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    setWorkouts(data.filter(filter));
+                    setWorkouts(data.filter(filter).sort());
                 })
         }}
         className="button w-8 h-8 text-primary icon-transition"
@@ -77,7 +91,8 @@ export const UnsaveBtn = ({ userId, savers, workoutId, setWorkouts, filter }) =>
             })
                 .then(res => res.json())
                 .then(data => {
-                    setWorkouts(data.filter(filter));
+                    console.log(data.filter(filter).sort().map(item => item.name));
+                    setWorkouts(data.filter(filter).sort());
                 })
 
         }}
@@ -106,7 +121,7 @@ export const LikeBtn = ({ userId, likers, workoutId, setWorkouts, filter }) => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        setWorkouts(data.filter(filter));
+                        setWorkouts(data.filter(filter).sort());
                     })
             }}
             className="button w-8 h-8 text-primary icon-transition"
@@ -115,7 +130,9 @@ export const LikeBtn = ({ userId, likers, workoutId, setWorkouts, filter }) => {
                 dimensions={"w-6 h-full"}
             />
         </button>
-        <h1 className="text-sm text-gray-400 text-center -mt-4">{likers.length}</h1>
+        {likers.length > 0 && (
+            <h1 className="text-sm text-gray-400 text-center -mt-4">{likers.length}</h1>
+        )}
     </div>)
 }
 
@@ -136,7 +153,7 @@ export const UnlikeBtn = ({ userId, likers, workoutId, setWorkouts, filter }) =>
                 })
                     .then(res => res.json())
                     .then(data => {
-                        setWorkouts(data.filter(filter));
+                        setWorkouts(data.filter(filter).sort());
                     })
 
             }}
@@ -146,6 +163,8 @@ export const UnlikeBtn = ({ userId, likers, workoutId, setWorkouts, filter }) =>
                 dimensions={"w-6 h-full"}
             />
         </button>
-        <h1 className="text-sm text-gray-400 text-center -mt-4">{likers.length}</h1>
+        {likers.length > 0 && (
+            <h1 className="text-sm text-gray-400 text-center -mt-4">{likers.length}</h1>
+        )}
     </div>)
 }

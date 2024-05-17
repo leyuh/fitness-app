@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import ConfirmationPanel from "./ConfirmationPanel";
 
 import { TARGETS } from "./configs";
+import BackBtn from "./BackBtn";
 
 export default function WorkoutForm (props)  {
 
@@ -62,15 +63,11 @@ export default function WorkoutForm (props)  {
 
 
     return <div className="flex flex-col items-center">
-        <form onSubmit={handleSubmit} className="bg-background2 max-w-xl rounded-sm px-6 py-2 shadow-md">
+        <form onSubmit={handleSubmit} className="bg-background2 max-w-xl rounded-sm px-6 mx-4 py-2 shadow-md">
             <div className="flex items-center my-4">
-                <Link href="/my-workouts" className="button w-10 h-10 text-white">
-                    <Back 
-                        dimensions={"w-8 h-full"}
-                    />
-                </Link>
+                <BackBtn />
 
-                <h1 className="font-bold text-2xl text-white text-center grow">{formTitle}</h1>
+                <h1 className="font-bold text-3xl text-white text-center grow">{formTitle}</h1>
             </div>
 
             <FormItem 

@@ -7,6 +7,9 @@ import Forward from "@/icons/Forward";
 import PlayIcon from "@/icons/Play";
 import Pause from "@/icons/Pause";
 
+import { generateRests } from "@/components/configs"
+import BackBtn from "@/components/BackBtn";
+
 const ControlButton = ({ handler, children }) => (
     <button
         className="button bg-primary h-12 w-12 primary-gradient text-white"
@@ -32,21 +35,6 @@ export default function Play() {
 
     const TIMER_DURATION = 5;
 
-    const generateRests = (duration, sets) => {
-        let updatedSets = [];
-
-        for (let i = 0; i < sets.length; i++) {
-            updatedSets.push(sets[i]);
-
-            if (i === sets.length - 1) continue;
-            updatedSets.push({
-                "name": "Rest",
-                "duration": duration
-            });
-        }
-
-        return updatedSets;
-    }
 
     useEffect(() => {
         fetch("/api/workouts").then(res => {
@@ -111,11 +99,7 @@ export default function Play() {
     
     return <section className="mt-8 max-w-xl mx-auto">
         <div className="flex items-center my-4">
-            <Link href="/my-workouts" className="button w-10 h-10 text-white">
-                <Back 
-                    dimensions={"w-6 h-full"}
-                />
-            </Link>
+            <BackBtn />
 
             <h1 className="font-bold text-3xl text-white text-center grow">{name}</h1>
         </div>

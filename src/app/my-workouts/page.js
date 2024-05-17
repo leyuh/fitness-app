@@ -7,7 +7,7 @@ import Link from "next/link";
 import WorkoutItem from "@/components/WorkoutItem";
 import Plus from "@/icons/Plus";
 
-import { PlayBtn, EditBtn, SaveBtn, UnsaveBtn, LikeBtn, UnlikeBtn } from "@/components/WorkoutItemButtons";
+import { InfoBtn, PlayBtn, EditBtn, SaveBtn, UnsaveBtn, LikeBtn, UnlikeBtn } from "@/components/WorkoutItemButtons";
 import { redirect } from "next/navigation";
 
 export default function MyWorkouts() {
@@ -64,6 +64,9 @@ export default function MyWorkouts() {
                                 workoutProps={item}
                                 key={i}
                             >
+                                <InfoBtn 
+                                    workoutId={item._id}
+                                />
                                 <PlayBtn 
                                     workoutId={item._id}
                                 />
