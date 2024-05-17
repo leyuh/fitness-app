@@ -21,6 +21,9 @@ const WorkoutSchema = new Schema({
     desc: {
         type: String
     },
+    targets: [{
+        type: String
+    }],
     sets: [{
         type: SetSchema
     }],

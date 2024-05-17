@@ -16,6 +16,7 @@ export async function POST (req) {
         "creator": body.creator,
         "name": body.name,
         "desc": body.desc,
+        "targets": body.targets,
         "sets": body.sets.map((set, i) => ({
             "name": set.name,
             "duration": set.duration || 0

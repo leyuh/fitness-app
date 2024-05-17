@@ -8,6 +8,7 @@ export default function Edit() {
 
     const [name, setName] = useState("My Workout");
     const [desc, setDesc] = useState("");
+    const [targets, setTargets] = useState([]);
     const [durationType, setDurationType] = useState(30);
 
     const [sets, setSets] = useState([]);
@@ -30,6 +31,7 @@ export default function Edit() {
                     setName(workout.name);
                     setDesc(workout.desc);
                     setSets(workout.sets);
+                    setTargets(workout.targets);
                     setDurationType(workout.durationType);
                     setPublished(workout.published);
                 }
@@ -52,6 +54,7 @@ export default function Edit() {
                 desc,
                 sets,
                 durationType,
+                targets,
                 published: publish,
                 savers: [publisher]
             })
@@ -81,6 +84,8 @@ export default function Edit() {
             durationType={durationType}
             setDurationType={setDurationType}
             setPublished={setPublished}
+            targets={targets}
+            setTargets={setTargets}
             buttonLabel={"Save"}
             workoutId={id}
         />

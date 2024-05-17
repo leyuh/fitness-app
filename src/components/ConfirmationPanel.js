@@ -10,7 +10,7 @@ export default function ConfirmationPanel ({ data, setConfirmationPanel }) {
     }, [data])
 
 
-    return <div className={`bg-background2 rounded-sm py-6 px-2 absolute top-[100%] mx-auto text-white block max-w-sm ${anim && "popup-transition"} shadow-2xl`}>
+    return <div className={`bg-background2 border-4 rounded-sm py-6 px-2 absolute top-[100%] mx-auto text-white block max-w-sm ${anim && "popup-transition"}`}>
         <h4 className="text-center font-bold text-lg">{data?.message}</h4>
         <p className="text-center">{data?.submessage}</p>
 

@@ -9,6 +9,19 @@ import ConfirmationPanel from "./ConfirmationPanel";
 
 export default function WorkoutForm (props)  {
 
+    const TARGETS = [
+        "Chest",
+        "Delts",
+        "Triceps",
+        "Biceps",
+        "Forearms",
+        "Back",
+        "Abs",
+        "Quads",
+        "Calves"
+    ];
+    const DURATION_OPTIONS = [30, 40, 45, "Custom"];
+
     const { data: session, status } = useSession();
     const router = useRouter();
 
@@ -25,12 +38,13 @@ export default function WorkoutForm (props)  {
         setSets,
         durationType,
         setDurationType,
+        targets,
+        setTargets,
         setPublished,
         buttonLabel,
         workoutId = null
     } = props;
 
-    const DURATION_OPTIONS = [30, 40, 45, "Custom"];
 
     useEffect(() => {
         if (durationType !== "Custom") {
@@ -41,6 +55,18 @@ export default function WorkoutForm (props)  {
         }
     }, [durationType])
 
+    const updateTargets = (target) => {
+        let index = targets.indexOf(target);
+        if (index === -1) {
+            setTargets(prev => [...prev, target]);
+            return
+        } else {
+            let targetsCopy = [...targets];
+            targetsCopy.splice(index, 1);
+            setTargets(targetsCopy);
+        }
+    }
+
 
 
     return <div className="flex flex-col items-center">
@@ -48,7 +74,7 @@ export default function WorkoutForm (props)  {
             <div className="flex items-center my-4">
                 <Link href="/my-workouts" className="button w-10 h-10 text-white">
                     <Back 
-                        dimensions={"w-6 h-full"}
+                        dimensions={"w-8 h-full"}
                     />
                 </Link>
 
@@ -66,6 +92,25 @@ export default function WorkoutForm (props)  {
                 state={desc}
                 setState={setDesc}
             />
+
+            <div className="flex items-center">
+                <h2 className="w-40 text-primary text-lg font-bold capitalize">Targets</h2>
+                <div className="grid grid-cols-3 gap-x-4">
+                    {TARGETS.map((target, i) => (
+                        <div className="flex gap-2 items-center" key={i}>
+                            <input
+                                type="checkbox"
+                                id={target}
+                                name={target}
+                                value={target}
+                                checked={targets.indexOf(target) !== -1}
+                                onChange={() => updateTargets(target)}
+                            />
+                            <label className="text-white" htmlFor={target}>{target}</label>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
             <div className="flex items-center">
                 <h2 className="w-40 text-primary text-lg font-bold capitalize">Duration Type</h2>

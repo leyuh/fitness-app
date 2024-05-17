@@ -14,6 +14,7 @@ import { useSession } from "next-auth/react";
 export default function NewWorkout() {
     const [name, setName] = useState("My Workout");
     const [desc, setDesc] = useState("");
+    const [targets, setTargets] = useState([]);
     const [durationType, setDurationType] = useState(30);
     const { data: session, status } = useSession();
 
@@ -35,6 +36,7 @@ export default function NewWorkout() {
                 name,
                 desc,
                 sets,
+                targets,
                 durationType
             })
         });
@@ -58,6 +60,8 @@ export default function NewWorkout() {
             setSets={setSets}
             durationType={durationType}
             setDurationType={setDurationType}
+            targets={targets}
+            setTargets={setTargets}
             buttonLabel={"Create"}
         />
         
