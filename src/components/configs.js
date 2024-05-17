@@ -10,6 +10,13 @@ export const TARGETS = [
     "Calves"
 ];
 
+export const COMPLETION_MESSAGES = [
+    "Way to go!",
+    "Great job!",
+    "Good work!",
+    "Stunning performance!"
+]
+
 export const generateRests = (duration, sets) => {
     let updatedSets = [];
 
@@ -26,7 +33,7 @@ export const generateRests = (duration, sets) => {
     return updatedSets;
 }
 
-export const calcTotalDuration = (sets, durationType) => {
+export const calcTotalDuration = (sets, durationType, genRests=true) => {
     if (!sets || !durationType) return 0;
 
     let sum = 0;
@@ -36,7 +43,7 @@ export const calcTotalDuration = (sets, durationType) => {
 
     if (durationType === "Custom") return Math.max(0, sum);
 
-    sum += ((sets.length - 1) * (60-durationType));
+    if (genRests) sum += ((sets.length - 1) * (60-durationType));
 
     return Math.max(0, sum);
 }

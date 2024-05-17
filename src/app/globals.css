@@ -49,21 +49,6 @@ input[type="checkbox"]:checked::before{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dropdown-transition {
-  transition-duration: 200ms;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  height: 100px;
-  overflow-y: scroll;
-}
-
-.popup-transition {
-  transition-duration: 300ms;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  top: 30%;
-}
-
 .icon-transition:hover {
   color: white;
 }

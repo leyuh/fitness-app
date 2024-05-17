@@ -2,15 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function ConfirmationPanel ({ data, setConfirmationPanel }) {
 
-    const [anim, setAnim] = useState(false);
-
-
-    useEffect(() => {
-        setAnim(prev => !prev);
-    }, [data])
-
-
-    return <div className={`bg-background2 border-4 rounded-sm py-6 px-2 absolute top-[100%] mx-auto text-white block max-w-sm ${anim && "popup-transition"}`}>
+    return <div className={`bg-background2 border-4 rounded-sm py-6 px-2 absolute top-[30%] mx-auto text-white block max-w-sm`}>
         <h4 className="text-center font-bold text-lg mt-4">{data?.message}</h4>
         <p className="text-center mt-2">{data?.submessage}</p>
 

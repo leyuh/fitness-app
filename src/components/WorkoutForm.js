@@ -257,7 +257,7 @@ export default function WorkoutForm (props)  {
 
         </form>
 
-        {<ConfirmationPanel 
+        {confirmationPanel && <ConfirmationPanel 
             data={confirmationPanel}
             setConfirmationPanel={setConfirmationPanel}
         />}

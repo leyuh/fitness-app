@@ -69,7 +69,7 @@ export default function Info() {
 
             <InfoItem 
                 title={"Duration"}
-                data={formatDuration(calcTotalDuration(workoutData?.sets, workoutData?.durationType))}
+                data={formatDuration(calcTotalDuration(workoutData?.sets, workoutData?.durationType, false))}
             />
 
             <ul className="max-w-xs mx-auto mt-4 max-h-[40vh] overflow-y-scroll px-2">
