@@ -23,7 +23,8 @@ export async function POST (req) {
         })),
         "durationType": body.durationType,
         "published": false,
-        "savers": []
+        "savers": [],
+        "likers": []
     }
 
     const newWorkout = await Workout.create(updatedBody);

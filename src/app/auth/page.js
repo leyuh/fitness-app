@@ -9,12 +9,12 @@ const AuthForm = ({title, handleSubmit, showSignUp, setShowSignUp}) => {
     const [password, setPassword] = useState("");
 
 
-    return <form className="bg-background2 max-w-sm p-6 pt-8 m-auto rounded-sm" onSubmit={(e) => {
+    return <form className="bg-background2 max-w-md p-6 pt-8 m-auto rounded-sm shadow-md" onSubmit={(e) => {
         handleSubmit(e, { username, password });
         setUsername("");
         setPassword("");
     }}>
-        <h1 className="text-white font-bold text-center text-2xl mb-8">{title}</h1>
+        <h1 className="text-white font-bold text-center text-2xl mb-6 mt-2">{title}</h1>
 
         <FormItem 
             title="Username"

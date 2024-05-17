@@ -7,7 +7,7 @@ import Link from "next/link";
 import WorkoutItem from "@/components/WorkoutItem";
 import Plus from "@/icons/Plus";
 
-import { PlayBtn, EditBtn, SaveBtn, UnsaveBtn } from "@/components/WorkoutItemButtons";
+import { PlayBtn, EditBtn, SaveBtn, UnsaveBtn, LikeBtn, UnlikeBtn } from "@/components/WorkoutItemButtons";
 import { redirect } from "next/navigation";
 
 export default function MyWorkouts() {
@@ -43,7 +43,7 @@ export default function MyWorkouts() {
         <section id="my-workouts" className="mt-8">
             <h1 className="text-center text-3xl font-bold text-white">My Workouts</h1>
 
-            <div className="max-w-xl mx-auto">
+            <div className="w-full">
 
                 {myWorkouts.length === 0 ? (
                     <div className="text-center mx-auto mt-8">
@@ -58,7 +58,7 @@ export default function MyWorkouts() {
                         </span>
                     </div>
                 ) : (<>
-                    <ul className="workouts-list">
+                    <ul className="workouts-list max-h-[80vh] w-full overflow-y-scroll">
                         {myWorkouts.map((item, i) => (
                             <WorkoutItem 
                                 workoutProps={item}
@@ -67,6 +67,21 @@ export default function MyWorkouts() {
                                 <PlayBtn 
                                     workoutId={item._id}
                                 />
+                                {(item.likers.indexOf(session?.user?._id) === -1 && item.published) ? (<LikeBtn 
+                                    userId={session?.user?._id}
+                                    likers={item.likers}
+                                    workoutId={item._id}
+                                    setWorkouts={setMyWorkouts}
+                                    filter={myWorkoutsFilter}
+                                />) : (item.published && <UnlikeBtn 
+                                    userId={session?.user?._id}
+                                    likers={item.likers}
+                                    workoutId={item._id}
+                                    setWorkouts={setMyWorkouts}
+                                    filter={myWorkoutsFilter}
+                                />
+                                )}
+
                                 {(!item.published && item.creator === session?.user?.username) && <EditBtn 
                                     workoutId={item._id}
                                 />}

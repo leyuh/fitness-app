@@ -124,7 +124,7 @@ export default function Play() {
             <h2 className="font-bold text-2xl text-white text-center">{sets[currentSetIndex]?.name}</h2>
 
             <div className="circle-div w-64 h-64 block mx-auto my-4">
-                <div className="timer rounded-full h-full w-full flex justify-center items-center" style={{
+                <div className="shadow-xl rounded-full h-full w-full flex justify-center items-center" style={{
                     backgroundImage: `conic-gradient(#ff6219 ${getCurrentSetProgressPercentage()}%, #1e2021 ${getCurrentSetProgressPercentage()}%)`
                 }}>
                     <div className="rounded-full bg-background w-[70%] h-[70%] flex items-center justify-center">

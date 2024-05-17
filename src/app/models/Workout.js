@@ -37,6 +37,9 @@ const WorkoutSchema = new Schema({
     },
     savers: [{
         type: Schema.Types.ObjectId
+    }],
+    likers: [{
+        type: Schema.Types.ObjectId
     }]
 }, { timestamps: true })
 

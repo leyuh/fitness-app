@@ -22,6 +22,10 @@ input[type="checkbox"]:checked {
   @apply primary-gradient border-0;
 }
 
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
 input[type="checkbox"]::before {
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22currentColor%22%20class%3D%22w-4%20h-4%22%3E%0A%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M12.416%203.376a.75.75%200%200%201%20.208%201.04l-5%207.5a.75.75%200%200%201-1.154.114l-3-3a.75.75%200%200%201%201.06-1.06l2.353%202.353%204.493-6.74a.75.75%200%200%201%201.04-.207Z%22%20clip-rule%3D%22evenodd%22%20%2F%3E%0A%3C%2Fsvg%3E%0A");
   display: none;
@@ -42,13 +46,21 @@ input[type="checkbox"]:checked::before{
 .icon-transition {
   transition-duration: 200ms;
   transition-property: all;
-  transition-timing-function: ease-out;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-transition {
+  transition-duration: 200ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100px;
+  overflow-y: scroll;
 }
 
 .popup-transition {
-  transition-duration: 250ms;
+  transition-duration: 300ms;
   transition-property: all;
-  transition-timing-function: ease-out;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   top: 30%;
 }
 
@@ -66,4 +78,11 @@ input[type="checkbox"]:checked::before{
 
 .yellow-gradient {
   background-image: linear-gradient(to bottom right, #f9e239, #f9c939);
+}
+
+#navbar > *:hover {
+  @apply text-primary;
+  transition-duration: 200ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

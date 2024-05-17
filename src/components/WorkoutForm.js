@@ -7,19 +7,11 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import ConfirmationPanel from "./ConfirmationPanel";
 
+import { TARGETS } from "./configs";
+
 export default function WorkoutForm (props)  {
 
-    const TARGETS = [
-        "Chest",
-        "Delts",
-        "Triceps",
-        "Biceps",
-        "Forearms",
-        "Back",
-        "Abs",
-        "Quads",
-        "Calves"
-    ];
+
     const DURATION_OPTIONS = [30, 40, 45, "Custom"];
 
     const { data: session, status } = useSession();
@@ -70,7 +62,7 @@ export default function WorkoutForm (props)  {
 
 
     return <div className="flex flex-col items-center">
-        <form onSubmit={handleSubmit} className="bg-background2 max-w-xl rounded-sm px-6 py-2">
+        <form onSubmit={handleSubmit} className="bg-background2 max-w-xl rounded-sm px-6 py-2 shadow-md">
             <div className="flex items-center my-4">
                 <Link href="/my-workouts" className="button w-10 h-10 text-white">
                     <Back 
@@ -218,7 +210,7 @@ export default function WorkoutForm (props)  {
                     onClick={(e) => {
                         setConfirmationPanel({
                             message: "Are you sure you want to delete this workout?",
-                            submessage: "",
+                            submessage: "This can not be undone.",
                             buttonText: "Delete",
                             handler: async (e) => {
                                 const res = await fetch("/api/workouts", {
