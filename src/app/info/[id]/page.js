@@ -72,7 +72,7 @@ export default function Info() {
                 data={formatDuration(calcTotalDuration(workoutData?.sets, workoutData?.durationType))}
             />
 
-            <ul className="max-w-xs mx-auto mt-4 max-h-[40vh] overflow-y-scroll">
+            <ul className="max-w-xs mx-auto mt-4 max-h-[40vh] overflow-y-scroll px-2">
                 {workoutData?.sets.map((set, i) => (
                     <li key={i} className={`${set.name === "Rest" ? "text-gray-400" : ""} font-bold text-lg flex gap-4 my-2`}>
                         <span className="text-left w-full">{set.name}</span>

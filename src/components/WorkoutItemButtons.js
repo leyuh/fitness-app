@@ -51,7 +51,6 @@ export const EditBtn = ({ workoutId }) => {
 export const SaveBtn = ({ userId, savers, workoutId, setWorkouts, filter }) => {
     return (<button
         onClick={async () => {
-            console.log(userId, workoutId);
             const res = await fetch("/api/workouts", {
                 method: "PUT",
                 headers: {
@@ -78,7 +77,6 @@ export const SaveBtn = ({ userId, savers, workoutId, setWorkouts, filter }) => {
 export const UnsaveBtn = ({ userId, savers, workoutId, setWorkouts, filter }) => {
     return (<button
         onClick={async () => {
-            console.log(userId, workoutId);
             const res = fetch("/api/workouts", {
                 method: "PUT",
                 headers: {
@@ -108,7 +106,6 @@ export const LikeBtn = ({ userId, likers, workoutId, setWorkouts, filter }) => {
     return (<div className="flex flex-col">
         <button
             onClick={async () => {
-                console.log(userId, workoutId);
                 const res = await fetch("/api/workouts", {
                     method: "PUT",
                     headers: {
@@ -140,7 +137,6 @@ export const UnlikeBtn = ({ userId, likers, workoutId, setWorkouts, filter }) =>
     return (<div className="flex flex-col">
         <button
             onClick={async () => {
-                console.log(userId, workoutId);
                 const res = fetch("/api/workouts", {
                     method: "PUT",
                     headers: {

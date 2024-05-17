@@ -27,7 +27,6 @@ export default function MyWorkouts() {
     }
 
     useEffect(() => {
-        console.log(session?.user);
         fetchMyWorkouts();
     }, [status])
 
