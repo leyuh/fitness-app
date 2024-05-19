@@ -1,6 +1,6 @@
 export default function FormItem ({ title, state, setState, type="text" }) {
     return (
-        <div className="flex items-center my-4">
+        <div className="grid items-center my-4 grid-cols-[30%_70%]">
             <h2 className="w-40 text-primary text-lg font-bold capitalize">{title}</h2>
             <input
                 type={type}

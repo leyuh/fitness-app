@@ -11,8 +11,8 @@ import BackBtn from "@/components/BackBtn";
 
 const InfoItem = ({ title, data }) => {
     return (
-        <div className="flex gap-4 items-center mx-10 text-md text-left">
-            <h1 className="font-bold text-primary w-40">{title}</h1>
+        <div className="grid gap-4 items-center mx-10 text-md text-left grid-cols-[30%_70%]">
+            <h1 className="font-bold text-primary">{title}</h1>
             <p className="m-2">{data}</p>
         </div>
     )

@@ -9,7 +9,7 @@ const AuthForm = ({title, handleSubmit, showSignUp, setShowSignUp}) => {
     const [password, setPassword] = useState("");
 
 
-    return <form className="bg-background2 max-w-md p-6 pt-8 m-auto rounded-sm shadow-md" onSubmit={(e) => {
+    return <form className="bg-background2 bg-gradient max-w-md p-6 pt-8 m-auto rounded-sm shadow-md" onSubmit={(e) => {
         handleSubmit(e, { username, password });
         setUsername("");
         setPassword("");
