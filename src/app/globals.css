@@ -54,7 +54,7 @@ input[type="checkbox"]:checked::before{
 }
 
 .primary-gradient {
-  background-image: linear-gradient(to bottom right, #ff813d, #ff600b);
+  background-image: linear-gradient(to bottom right, #ff5d2b, #ff4b14);
 }
 
 .bg-gradient {

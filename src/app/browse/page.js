@@ -8,13 +8,15 @@ import WorkoutItem from "@/components/WorkoutItem";
 import { InfoBtn, PlayBtn, SaveBtn, UnsaveBtn, LikeBtn, UnlikeBtn } from "@/components/WorkoutItemButtons";
 
 import { TARGETS } from "@/components/configs";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function Browse() {
 
     const [publishedWorkouts, setPublishedWorkouts] = useState([]);
 
-    const [selectedFilters, setSelectedFilters] = useState([]);
-    const [filteredWorkouts, setFilteredWorkouts] = useState([]);
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const selectedFilters = searchParams.get("target")?.split(",") || [];
 
     const [order, setOrder] = useState([]);
 
@@ -23,14 +25,19 @@ export default function Browse() {
     const browseWorkoutsFilter = (w) => w.published;
 
     const updateTargets = (target) => {
-        let index = selectedFilters.indexOf(target);
-        if (index === -1) {
-            setSelectedFilters(prev => [...prev, target]);
-            return
+        console.log("!");
+        if (selectedFilters.indexOf(target) === -1) {
+            // add
+            router.push(`?target=${[...selectedFilters, target].join(",")}`);
         } else {
-            let targetsCopy = [...selectedFilters];
-            targetsCopy.splice(index, 1);
-            setSelectedFilters(targetsCopy);
+            // remove
+            if (selectedFilters.length === 1) {
+                console.log("clear");
+                router.push("?");
+            } else {
+                router.push(`?target=${selectedFilters.filter(val => val !== target).join(",")}`);
+            }
+            
         }
     }
 
@@ -52,20 +59,6 @@ export default function Browse() {
         fetchWorkouts(true);
     }, [])
 
-    useEffect(() => {
-        if (selectedFilters.length === 0) {
-            setFilteredWorkouts(publishedWorkouts);
-            return;
-        }
-        
-        setFilteredWorkouts(publishedWorkouts.filter((workout, i) => {
-            for (let i = 0; i < selectedFilters.length; i++) {
-                if (workout.targets.indexOf(selectedFilters[i]) === -1) return false;
-            }
-
-            return true;
-        }))
-    }, [selectedFilters, publishedWorkouts])
 
     return (
         <section id="my-workouts" className="mt-8">
@@ -85,7 +78,13 @@ export default function Browse() {
 
             <div className="w-full mt-4">
                 <ul className="workouts-list">
-                    {filteredWorkouts.sort((a, b) => {
+                    {publishedWorkouts.filter((item, i) => {
+                        if (selectedFilters.length === 0) return true;
+                        for (let j = 0; j < selectedFilters.length; j++) {
+                            if (item.targets.indexOf(selectedFilters[j]) === -1) return false;
+                        }
+                        return true;
+                    }).sort((a, b) => {
                         if (order.indexOf(a._id) > order.indexOf(b._id)) return 1;
                         return -1;
                     }).map((item, i) => (
