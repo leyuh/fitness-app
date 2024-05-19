@@ -77,7 +77,7 @@ export default function Browse() {
             </div>
 
             <div className="w-full mt-4">
-                <ul className="workouts-list">
+                <ul className="workouts-list max-h-[75vh] overflow-y-scroll">
                     {publishedWorkouts.filter((item, i) => {
                         if (selectedFilters.length === 0) return true;
                         for (let j = 0; j < selectedFilters.length; j++) {

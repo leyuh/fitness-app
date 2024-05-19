@@ -42,7 +42,7 @@ export default function MyWorkouts() {
         <section id="my-workouts" className="mt-8">
             <h1 className="text-center text-3xl font-bold text-white">My Workouts</h1>
 
-            <div className="w-full">
+            <div className="w-full mt-4">
 
                 {myWorkouts.length === 0 ? (
                     <div className="text-center mx-auto mt-8">

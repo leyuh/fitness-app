@@ -1,13 +1,20 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import FormItem from "@/components/FormItem";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const AuthForm = ({title, handleSubmit, showSignUp, setShowSignUp}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const { data: session, status } = useSession();
+
+    if (status === "authenticated") {
+        return redirect("/my-workouts");
+    }
 
     return <form className="bg-background2 bg-gradient max-w-md p-6 pt-8 m-auto rounded-sm shadow-md" onSubmit={(e) => {
         handleSubmit(e, { username, password });
@@ -71,8 +78,7 @@ export default function Auth() {
             if (res.error) {
                 return;
             }
-        
-            router.replace("my-workouts");
+
         } catch (err) {
             console.log(err);
         }
