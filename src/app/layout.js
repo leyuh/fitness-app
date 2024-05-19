@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { AppProvider } from "../AppContext";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Fitness App",
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
       <body>
         <AppProvider>
           <Navbar />
-          {children}
+          <Suspense fallback={<div>Loading</div>}>
+            {children}
+          </Suspense>
         </AppProvider>
       </body>
     </html>

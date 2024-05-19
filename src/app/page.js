@@ -41,7 +41,7 @@ export default function Home() {
           />
 
         </div>
-        {status === "unauthenticated" && <h1 className="text-white mt-4 text-center text-xl mx-auto max-w-xl">
+        {status === "unauthenticated" && <h1 className="text-white mt-4 text-center text-lg mx-auto max-w-xl">
           <Link href="/auth" className="underline">Sign in</Link> to create and save workouts.
         </h1>}
       </div>
