@@ -99,9 +99,9 @@ export default function MyWorkouts() {
                         ))}
                     </ul>
 
-                    <Link href="/my-workouts/new" id="new-workout-btn" className="button w-6 h-6 mx-auto text-white">
+                    <Link href="/my-workouts/new" id="new-workout-btn" className="button w-8 h-8 mx-auto text-white">
                         <Plus 
-                            dimensions="w-6 h-full"
+                            dimensions="w-8 h-full"
                         />
                     </Link>
                 </>)}

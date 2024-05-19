@@ -63,7 +63,7 @@ export default function WorkoutForm (props)  {
 
 
     return <div className="flex flex-col items-center">
-        <form onSubmit={handleSubmit} className="bg-background2 max-w-xl rounded-sm px-6 mx-4 py-2 shadow-md">
+        <form onSubmit={handleSubmit} className="bg-background2 bg-gradient max-w-xl rounded-sm px-6 mx-4 py-2 shadow-md">
             <div className="flex items-center my-4">
                 <BackBtn />
 
@@ -108,7 +108,7 @@ export default function WorkoutForm (props)  {
                     {DURATION_OPTIONS.map((option, i) => (
                         <button
                             type="button"
-                            className={`text-white button h-8 w-16 ${durationType !== option ? "primary-gradient bg-primary" : "border-2 border-white"}`}
+                            className={`text-white button h-8 w-16 ${durationType === option ? "primary-gradient bg-primary" : "border-[1px] border-white"}`}
                             key={i}
                             onClick={() => setDurationType(option)}
                         >

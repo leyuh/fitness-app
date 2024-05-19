@@ -44,7 +44,7 @@ export default function Info() {
     }, [])
 
     return <section className="mt-8">
-        <div className="max-w-lg mx-auto bg-background2 shadow-md p-4 text-center text-white">
+        <div className="bg-gradient max-w-lg mx-auto bg-background2 shadow-md p-4 text-center text-white">
             
             <div className="flex items-center mt-4">
                 <BackBtn />

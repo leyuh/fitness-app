@@ -57,12 +57,8 @@ input[type="checkbox"]:checked::before{
   background-image: linear-gradient(to bottom right, #ff813d, #ff600b);
 }
 
-.green-gradient {
-  background-image: linear-gradient(to bottom right, #51f34b, #35df26);
-}
-
-.yellow-gradient {
-  background-image: linear-gradient(to bottom right, #f9e239, #f9c939);
+.bg-gradient {
+  background-image: linear-gradient(to bottom right, #1e2021, #1d1e1f);
 }
 
 #navbar > *:hover {
@@ -72,4 +68,18 @@ input[type="checkbox"]:checked::before{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.filter-div > .unselected:hover {
+  @apply text-primary;
+  transition-duration: 200ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .filter-div::-webkit-scrollbar { display: none; }
+
+#new-workout-btn:hover {
+  @apply text-primary;
+  transition-duration: 200ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

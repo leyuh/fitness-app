@@ -75,7 +75,7 @@ export default function Browse() {
                 {TARGETS.map((target, i) => (
                     <button
                         key={i}
-                        className={`h-6 leading-3 rounded-sm px-[6px] text-white my-0 ${selectedFilters.indexOf(target) === -1 ? "" : "primary-gradient"}`}
+                        className={`h-6 leading-3 rounded-sm px-[6px] text-white my-0 ${selectedFilters.indexOf(target) === -1 ? "unselected" : "primary-gradient"}`}
                         onClick={() => updateTargets(target)}
                     >
                         {target}
