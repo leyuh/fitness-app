@@ -96,7 +96,7 @@ export default function Auth() {
 
     }
 
-    return <section id="auth" className="mt-16">
+    return <section id="auth" className="w-[95vw] mx-auto mt-16 md:w-full">
         {showSignUp ? (
             <AuthForm 
                 title={"Sign Up"}

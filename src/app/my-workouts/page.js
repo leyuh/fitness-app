@@ -34,12 +34,9 @@ export default function MyWorkouts() {
         fetchMyWorkouts();
     }, [])
 
-    if (status === "unauthenticated") {
-        return redirect("/auth");
-    }
 
     return (
-        <section id="my-workouts" className="mt-8">
+        <section id="my-workouts" className="w-[95vw] mx-auto md:mt-8 md:w-full">
             <h1 className="text-center text-3xl font-bold text-white">My Workouts</h1>
 
             <div className="w-full mt-4">

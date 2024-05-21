@@ -19,7 +19,7 @@ export default function WorkoutItem(props) {
 
     return <li className="bg-gradient max-w-xl mx-auto workout-item mb-4 w-full bg-background2 p-4 gap-6 rounded-sm flex shadow-md">
         <div>
-            <h4 className="font-bold text-[22px] text-white">{name}</h4>
+            <h4 className="font-bold text-lg md:text-[22px] text-white">{name}</h4>
             <div className="flex gap-2">
                 <p className="text-white text-sm">{formatDuration(calcTotalDuration(sets, durationType))}</p>
                 {targets.length > 0 ? (

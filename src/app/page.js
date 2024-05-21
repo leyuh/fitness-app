@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 const HomeBtn = ({ text, link }) => {
   return <Link
     href={link}
-    className="button primary-gradient px-3 py-2"
+    className="button primary-gradient px-3 py-2 text-center"
   >
     {text}
   </Link>
@@ -19,11 +19,11 @@ export default function Home() {
   const { data: session, status } = useSession();
 
   return (
-    <section id="home">
+    <section id="home" className="w-[95vw] mx-auto md:w-full">
       <div className="flex flex-col mx-auto">
-        <h1 className="max-w-xl text-3xl mt-40 text-white text-center font-bold mx-auto">Fitness App</h1>
-        <p className="max-w-xl text-md mt-2 mb-4 text-gray-400 text-center mx-auto">a demo app by leyuh made with next, tailwind, and mongodb </p>
-        <div className="flex gap-6 text-white text-lg font-bold max-w-xl justify-center items-center mx-auto">
+        <h1 className="w-full text-3xl mt-20 md:mt-40 text-white text-center font-bold mx-auto">Fitness App</h1>
+        <p className="w-full text-md mt-2 mb-4 text-gray-400 text-center mx-auto">a demo app by leyuh made with next, tailwind, and mongodb </p>
+        <div className="flex gap-4 text-white text-lg font-bold w-full justify-center items-center mx-auto">
 
           {status === "authenticated" && <>
             <HomeBtn 
