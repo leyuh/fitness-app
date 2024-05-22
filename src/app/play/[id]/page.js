@@ -101,21 +101,21 @@ export default function Play() {
         return 100*((sets[currentSetIndex].duration - currentSetTimeRemaining) / sets[currentSetIndex].duration);
     }
     
-    return <section className="mt-8 max-w-xl mx-auto justify-center flex flex-col items-center">
+    return <section className="-mt-8 md:mt-8 max-w-xl mx-auto justify-center flex flex-col items-center">
         <div className="flex items-center my-4 gap-10">
             <BackBtn />
 
-            <h1 className="font-bold text-3xl text-white text-center grow w-full">{name}</h1>
+            <h1 className="font-bold text-xl md:text-3xl text-white text-center grow w-full">{name}</h1>
         </div>
 
-        <div className="mt-8">
+        <div className="-mt-4 md:mt-8">
             <h2 className="font-bold text-2xl text-white text-center">{sets[currentSetIndex]?.name}</h2>
 
             <div className="circle-div w-64 h-64 block mx-auto my-4">
                 <div className="shadow-xl rounded-full h-full w-full flex justify-center items-center" style={{
                     backgroundImage: `conic-gradient(#ff6219 ${getCurrentSetProgressPercentage()}%, #1e2021 ${getCurrentSetProgressPercentage()}%)`
                 }}>
-                    <div className="rounded-full bg-background w-[70%] h-[70%] flex items-center justify-center">
+                    <div className="rounded-full bg-background w-[65%] h-[65%] flex items-center justify-center">
                         <h1 className="text-white text-7xl font-bold text-center">{currentSetTimeRemaining}</h1>
                     </div>
                 </div>
@@ -127,7 +127,7 @@ export default function Play() {
             </h2>
         </div>
 
-        <div className="mt-8">
+        <div className="md:mt-8">
 
             <div className="flex gap-4 items-center justify-center">
                 <ControlButton

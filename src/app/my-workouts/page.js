@@ -54,7 +54,7 @@ export default function MyWorkouts() {
                         </span>
                     </div>
                 ) : (<>
-                    <ul className="workouts-list max-h-[80vh] w-full overflow-y-scroll">
+                    <ul className="workouts-list max-h-[60vh] w-full overflow-y-scroll">
                         {myWorkouts.map((item, i) => (
                             <WorkoutItem 
                                 workoutProps={item}

@@ -63,30 +63,32 @@ export default function WorkoutForm (props)  {
 
 
     return <div className="flex flex-col items-center">
-        <form onSubmit={handleSubmit} className="bg-background2 bg-gradient max-w-xl rounded-sm px-6 mx-4 py-2 shadow-md">
+        <form onSubmit={handleSubmit} className="bg-background2 bg-gradient w-full max-h-[75vh] md:max-h-full md:max-w-xl rounded-sm px-6 mx-4 py-2 shadow-md overflow-y-scroll md:overflow-y-hidden">
             <div className="flex items-center my-4">
                 <BackBtn />
 
                 <h1 className="font-bold text-3xl text-white text-center grow">{formTitle}</h1>
             </div>
 
-            <FormItem 
-                title="name"
-                state={name}
-                setState={setName}
-            />
+            <div className="mt-[-20px] md:mt-0">
+                <FormItem 
+                    title="name"
+                    state={name}
+                    setState={setName}
+                />
 
-            <FormItem 
-                title="description"
-                state={desc}
-                setState={setDesc}
-            />
+                <FormItem 
+                    title="description"
+                    state={desc}
+                    setState={setDesc}
+                />
+            </div>
 
-            <div className="flex items-center">
-                <h2 className="w-40 text-primary text-lg font-bold capitalize">Targets</h2>
-                <div className="grid grid-cols-3 gap-x-4">
+            <div className="flex flex-col md:flex-row">
+                <h2 className="md:w-40 text-primary text-left w-full text-sm md:text-lg font-bold capitalize">Targets</h2>
+                <div className="grid grid-cols-3 gap-x-4 mt-1">
                     {TARGETS.map((target, i) => (
-                        <div className="flex gap-2 items-center" key={i}>
+                        <div className="flex gap-2 items-center mt-1 md:mt-0" key={i}>
                             <input
                                 type="checkbox"
                                 id={target}
@@ -95,16 +97,16 @@ export default function WorkoutForm (props)  {
                                 checked={targets.indexOf(target) !== -1}
                                 onChange={() => updateTargets(target)}
                             />
-                            <label className="text-white" htmlFor={target}>{target}</label>
+                            <label className="text-white text-sm md:text-lg" htmlFor={target}>{target}</label>
                         </div>
                     ))}
                 </div>
             </div>
 
-            <div className="flex items-center">
-                <h2 className="w-40 text-primary text-lg font-bold capitalize">Duration Type</h2>
+            <div className="flex flex-col md:flex-row items-center">
+                <h2 className="md:w-40 text-primary text-sm mt-3 md:mt-0 text-left w-full md:text-lg font-bold capitalize">Duration Type</h2>
 
-                <div className="duration-options flex gap-2 ml-auto">
+                <div className="duration-options flex gap-4 -mt-3 md:gap-2 ml-auto w-full md:w-auto justify-center">
                     {DURATION_OPTIONS.map((option, i) => (
                         <button
                             type="button"
@@ -118,7 +120,7 @@ export default function WorkoutForm (props)  {
                 </div>
             </div>
 
-            <h2 className="w-40 text-primary text-lg font-bold">Sets</h2>
+            <h2 className="w-40 text-primary text-sm md:text-lg font-bold">Sets</h2>
 
             <div className="sets-div">
                 <ul className="max-h-[250px] overflow-y-scroll">

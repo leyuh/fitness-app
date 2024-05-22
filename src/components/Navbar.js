@@ -48,7 +48,7 @@ export default function Navbar() {
             {status === "authenticated" && (
                 <button
                     onClick={() => signOut()}
-                    className="text-white"
+                    className="text-white text-left"
                 >
                     Sign Out
                 </button>

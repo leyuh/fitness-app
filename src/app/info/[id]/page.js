@@ -43,12 +43,12 @@ export default function Info() {
         })
     }, [])
 
-    return <section className="mt-8">
-        <div className="bg-gradient max-w-lg mx-auto bg-background2 shadow-md p-4 text-center text-white">
+    return <section className="md:mt-8 w-[95vw] mx-auto md:w-full">
+        <div className="bg-gradient max-w-lg max-h-[75vh] md:max-h-full mx-auto bg-background2 shadow-md p-4 text-center text-white">
             
-            <div className="flex items-center mt-4">
+            <div className="flex items-center md:mt-4">
                 <BackBtn />
-                <h1 className="font-bold text-3xl grow">{workoutData?.name}</h1>
+                <h1 className="font-bold text-xl md:text-3xl grow">{workoutData?.name}</h1>
             </div>
 
             <h3 className="text-gray-400 -mt-4 mb-4">by {workoutData?.creator}</h3>

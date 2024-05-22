@@ -75,6 +75,7 @@ export default function Auth() {
                 redirect: false
             });
     
+            console.log(res);
             if (res.error) {
                 return;
             }
