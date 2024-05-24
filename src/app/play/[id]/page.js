@@ -101,14 +101,15 @@ export default function Play() {
         return 100*((sets[currentSetIndex].duration - currentSetTimeRemaining) / sets[currentSetIndex].duration);
     }
     
-    return <section className="-mt-8 md:mt-8 max-w-xl mx-auto justify-center flex flex-col items-center">
+    return <section className="-mt-8 md:mt-0 max-w-xl mx-auto justify-center flex flex-col items-center">
+
         <div className="flex items-center my-4 gap-10">
             <BackBtn />
 
-            <h1 className="font-bold text-xl md:text-3xl text-white text-center grow w-full">{name}</h1>
+            <h1 className="font-bold text-2xl md:text-3xl text-white text-center grow w-full">{name}</h1>
         </div>
 
-        <div className="-mt-4 md:mt-8">
+        <div className="-mt-4 md:mt-0">
             <h2 className="font-bold text-2xl text-white text-center">{sets[currentSetIndex]?.name}</h2>
 
             <div className="circle-div w-64 h-64 block mx-auto my-4">
@@ -127,7 +128,7 @@ export default function Play() {
             </h2>
         </div>
 
-        <div className="md:mt-8">
+        <div className="">
 
             <div className="flex gap-4 items-center justify-center">
                 <ControlButton

@@ -71,7 +71,7 @@ export default function Edit() {
         return redirect("/my-workouts");
     }
 
-    return <section className="md:mt-12 w-[95vw] mx-auto md:w-full">
+    return <section className="md:mt-8 w-[95vw] mx-auto md:w-full">
         <WorkoutForm 
             formTitle={"Edit Workout"}
             handleSubmit={handleSubmit}

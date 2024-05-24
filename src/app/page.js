@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useSession } from "next-auth/react";
+import { cardio } from "ldrs";
 
 const HomeBtn = ({ text, link }) => {
   return <Link
@@ -18,12 +19,15 @@ export default function Home() {
 
   const { data: session, status } = useSession();
 
+  cardio.register();
+
   return (
     <section id="home" className="w-[95vw] mx-auto md:w-full">
       <div className="flex flex-col mx-auto">
         <h1 className="w-full text-3xl mt-28 md:mt-40 text-white text-center font-bold mx-auto">Fitness App</h1>
         <p className="w-full text-md mt-2 mb-4 text-gray-400 text-center mx-auto">a demo app by leyuh made with next, tailwind, and mongodb </p>
         <div className="flex gap-4 text-white text-lg font-bold w-full justify-center items-center mx-auto">
+
 
           {status === "authenticated" && <>
             <HomeBtn 

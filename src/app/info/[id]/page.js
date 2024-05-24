@@ -44,7 +44,7 @@ export default function Info() {
     }, [])
 
     return <section className="md:mt-8 w-[95vw] mx-auto md:w-full">
-        <div className="bg-gradient max-w-lg max-h-[75vh] md:max-h-full mx-auto bg-background2 shadow-md p-4 text-center text-white">
+        <div className="bg-gradient overflow-hidden max-w-lg max-h-[75vh] mx-auto bg-background2 shadow-md p-4 text-center text-white">
             
             <div className="flex items-center md:mt-4">
                 <BackBtn />
@@ -72,7 +72,7 @@ export default function Info() {
                 data={formatDuration(calcTotalDuration(workoutData?.sets, workoutData?.durationType, false))}
             />
 
-            <ul className="max-w-xs mx-auto mt-4 max-h-[40vh] overflow-y-scroll px-2">
+            <ul className="max-w-xs mx-auto mt-4 mb-20 max-h-[35vh] overflow-y-scroll px-2">
                 {workoutData?.sets.map((set, i) => (
                     <li key={i} className={`${set.name === "Rest" ? "text-gray-400" : ""} font-bold text-lg flex gap-4 my-2`}>
                         <span className="text-left w-full">{set.name}</span>

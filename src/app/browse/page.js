@@ -64,7 +64,7 @@ export default function Browse() {
         <section id="my-workouts" className="w-[95vw] mx-auto md:mt-8 md:w-full">
             <h1 className="text-center text-3xl font-bold text-white">Published Workouts</h1>
 
-            <div className="filter-div w-full md:justify-center rounded-sm mt-2 flex mx-auto gap-4 overflow-x-scroll pb-4">
+            <div className="filter-div w-full md:justify-center rounded-sm mt-2 flex mx-auto gap-4 overflow-x-scroll pb-4 ">
                 {TARGETS.map((target, i) => (
                     <button
                         key={i}
@@ -77,7 +77,7 @@ export default function Browse() {
             </div>
 
             <div className="w-full md:mt-4">
-                <ul className="workouts-list max-h-[60vh] md:max-h-[75vh] overflow-y-scroll">
+                <ul className="workouts-list max-h-[60vh] overflow-y-scroll">
                     {publishedWorkouts.filter((item, i) => {
                         if (selectedFilters.length === 0) return true;
                         for (let j = 0; j < selectedFilters.length; j++) {

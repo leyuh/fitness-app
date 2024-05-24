@@ -48,7 +48,7 @@ export default function NewWorkout() {
         return redirect("/my-workouts");
     };
 
-    return <section className="md:mt-12 w-[95vw] mx-auto md:w-full">
+    return <section className="md:mt-8 w-[95vw] mx-auto md:w-full">
         <WorkoutForm 
             formTitle={"New Workout"}
             handleSubmit={handleSubmit}

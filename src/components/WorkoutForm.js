@@ -63,7 +63,7 @@ export default function WorkoutForm (props)  {
 
 
     return <div className="flex flex-col items-center">
-        <form onSubmit={handleSubmit} className="bg-background2 bg-gradient w-full max-h-[75vh] md:max-h-full md:max-w-xl rounded-sm px-6 mx-4 py-2 shadow-md overflow-y-scroll md:overflow-y-hidden">
+        <form onSubmit={handleSubmit} className="bg-background2 overflow-y-scroll bg-gradient w-full max-h-[75vh] md:max-w-xl rounded-sm px-6 mx-4 py-2 shadow-md">
             <div className="flex items-center my-4">
                 <BackBtn />
 
@@ -123,7 +123,7 @@ export default function WorkoutForm (props)  {
             <h2 className="w-40 text-primary text-sm md:text-lg font-bold">Sets</h2>
 
             <div className="sets-div">
-                <ul className="max-h-[250px] overflow-y-scroll">
+                <ul className="max-h-[20vh] overflow-y-scroll">
                     {sets.map((set, i) => (
                         <li key={i} className="mt-2 bg-background p-2 rounded-sm">
                             <input
