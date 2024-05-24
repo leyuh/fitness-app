@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useSession } from "next-auth/react";
-import { cardio } from "ldrs";
 
 const HomeBtn = ({ text, link }) => {
   return <Link
@@ -19,7 +18,6 @@ export default function Home() {
 
   const { data: session, status } = useSession();
 
-  cardio.register();
 
   return (
     <section id="home" className="w-[95vw] mx-auto md:w-full">
