@@ -7,6 +7,8 @@ import Forward from "@/icons/Forward";
 import PlayIcon from "@/icons/Play";
 import Pause from "@/icons/Pause";
 
+import Loader from "@/components/Loader";
+
 import { generateRests } from "@/components/configs"
 import BackBtn from "@/components/BackBtn";
 import CompletionPanel from "@/components/CompletionPanel";
@@ -36,6 +38,8 @@ export default function Play() {
 
     const [showCompletionPanel, setShowCompletionPanel] = useState(false);
 
+    const [loading, setLoading] = useState(true);
+
     const TIMER_DURATION = 5;
 
 
@@ -61,6 +65,7 @@ export default function Play() {
                     setSets(workout.sets);
 
                     setCurrentSetIndex(0);
+                    setLoading(false);
                 }
             })
         })
@@ -100,13 +105,15 @@ export default function Play() {
         if (!sets[currentSetIndex]) return 0;
         return 100*((sets[currentSetIndex].duration - currentSetTimeRemaining) / sets[currentSetIndex].duration);
     }
+
+    if (loading) return <Loader />
     
     return <section className="-mt-8 md:mt-0 max-w-xl mx-auto justify-center flex flex-col items-center">
 
-        <div className="flex items-center my-4 gap-10">
+        <div className="flex items-center my-4 gap-10 w-full">
             <BackBtn />
 
-            <h1 className="font-bold text-2xl md:text-3xl text-white text-center grow w-full">{name}</h1>
+            <h1 className="font-bold text-2xl -ml-10 md:text-3xl text-white text-center grow w-full">{name}</h1>
         </div>
 
         <div className="-mt-4 md:mt-0">

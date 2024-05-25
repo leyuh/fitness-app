@@ -10,6 +10,7 @@ import ConfirmationPanel from "./ConfirmationPanel";
 import { TARGETS } from "./configs";
 import BackBtn from "./BackBtn";
 
+
 export default function WorkoutForm (props)  {
 
 
@@ -39,6 +40,7 @@ export default function WorkoutForm (props)  {
     } = props;
 
 
+
     useEffect(() => {
         if (durationType !== "Custom") {
             setSets(prev => prev.filter((set, i) => set.name !== "Rest").map((set, i) => ({
@@ -59,7 +61,6 @@ export default function WorkoutForm (props)  {
             setTargets(targetsCopy);
         }
     }
-
 
 
     return <div className="flex flex-col items-center">

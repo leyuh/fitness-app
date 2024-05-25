@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import WorkoutForm from "@/components/WorkoutForm";
 import { redirect } from "next/navigation";
 
+import Loader from "@/components/Loader";
+
 export default function Edit() {
 
     const [name, setName] = useState("My Workout");
@@ -16,6 +18,8 @@ export default function Edit() {
     const [redirectToWorkouts, setRedirectToWorkouts] = useState(false);
 
     const [published, setPublished] = useState(false);
+
+    const [loading, setLoading] = useState(true);
 
     const { id } = useParams();
 
@@ -34,6 +38,8 @@ export default function Edit() {
                     setTargets(workout.targets);
                     setDurationType(workout.durationType);
                     setPublished(workout.published);
+
+                    setLoading(false);
                 }
             })
         })
@@ -70,6 +76,8 @@ export default function Edit() {
     if (published) {
         return redirect("/my-workouts");
     }
+
+    if (loading) return <Loader />
 
     return <section className="md:mt-8 w-[95vw] mx-auto md:w-full">
         <WorkoutForm 

@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import WorkoutItem from "@/components/WorkoutItem";
 import { InfoBtn, PlayBtn, SaveBtn, UnsaveBtn, LikeBtn, UnlikeBtn } from "@/components/WorkoutItemButtons";
+import Loader from "@/components/Loader";
 
 import { TARGETS } from "@/components/configs";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -13,6 +14,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 export default function Browse() {
 
     const [publishedWorkouts, setPublishedWorkouts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -56,7 +58,9 @@ export default function Browse() {
     }
 
     useEffect(() => {
-        fetchWorkouts(true);
+        fetchWorkouts(true).then(() => {
+            setLoading(false);
+        })
     }, [])
 
 
@@ -76,64 +80,69 @@ export default function Browse() {
                 ))}
             </div>
 
-            <div className="w-full md:mt-4">
-                <ul className="workouts-list max-h-[60vh] overflow-y-scroll">
-                    {publishedWorkouts.filter((item, i) => {
-                        if (selectedFilters.length === 0) return true;
-                        for (let j = 0; j < selectedFilters.length; j++) {
-                            if (item.targets.indexOf(selectedFilters[j]) === -1) return false;
-                        }
-                        return true;
-                    }).sort((a, b) => {
-                        if (order.indexOf(a._id) > order.indexOf(b._id)) return 1;
-                        return -1;
-                    }).map((item, i) => (
-                        <WorkoutItem 
-                            workoutProps={item}
-                            key={i}
-                        >
-                            <InfoBtn 
-                                workoutId={item._id}
-                            />
-                            <PlayBtn 
-                                workoutId={item._id}
-                            />
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className="w-full md:mt-4">
+                    <ul className="workouts-list max-h-[60vh] overflow-y-scroll">
+                        {publishedWorkouts.filter((item, i) => {
+                            if (selectedFilters.length === 0) return true;
+                            for (let j = 0; j < selectedFilters.length; j++) {
+                                if (item.targets.indexOf(selectedFilters[j]) === -1) return false;
+                            }
+                            return true;
+                        }).sort((a, b) => {
+                            if (order.indexOf(a._id) > order.indexOf(b._id)) return 1;
+                            return -1;
+                        }).map((item, i) => (
+                            <WorkoutItem 
+                                workoutProps={item}
+                                key={i}
+                            >
+                                <InfoBtn 
+                                    workoutId={item._id}
+                                />
+                                <PlayBtn 
+                                    workoutId={item._id}
+                                />
 
-                            {(status === "authenticated" && item.likers.indexOf(session?.user?._id) === -1 && item.published) ? (<LikeBtn 
-                                userId={session?.user?._id}
-                                likers={item.likers}
-                                workoutId={item._id}
-                                setWorkouts={setPublishedWorkouts}
-                                filter={browseWorkoutsFilter}
-                            />) : (status === "authenticated" && item.published && <UnlikeBtn 
-                                userId={session?.user?._id}
-                                likers={item.likers}
-                                workoutId={item._id}
-                                setWorkouts={setPublishedWorkouts}
-                                filter={browseWorkoutsFilter}
-                            />
-                            )}
+                                {(status === "authenticated" && item.likers.indexOf(session?.user?._id) === -1 && item.published) ? (<LikeBtn 
+                                    userId={session?.user?._id}
+                                    likers={item.likers}
+                                    workoutId={item._id}
+                                    setWorkouts={setPublishedWorkouts}
+                                    filter={browseWorkoutsFilter}
+                                />) : (status === "authenticated" && item.published && <UnlikeBtn 
+                                    userId={session?.user?._id}
+                                    likers={item.likers}
+                                    workoutId={item._id}
+                                    setWorkouts={setPublishedWorkouts}
+                                    filter={browseWorkoutsFilter}
+                                />
+                                )}
 
-                            {(status === "authenticated" && item.savers.indexOf(session?.user?._id) === -1) && <SaveBtn 
-                                userId={session?.user?._id}
-                                savers={item.savers}
-                                workoutId={item._id}
-                                setWorkouts={setPublishedWorkouts}
-                                filter={browseWorkoutsFilter}
-                            />}
+                                {(status === "authenticated" && item.savers.indexOf(session?.user?._id) === -1) && <SaveBtn 
+                                    userId={session?.user?._id}
+                                    savers={item.savers}
+                                    workoutId={item._id}
+                                    setWorkouts={setPublishedWorkouts}
+                                    filter={browseWorkoutsFilter}
+                                />}
 
-                            {(status === "authenticated" && item.savers.indexOf(session?.user?._id) !== -1) && <UnsaveBtn 
-                                userId={session?.user?._id}
-                                savers={item.savers}
-                                workoutId={item._id}
-                                setWorkouts={setPublishedWorkouts}
-                                filter={browseWorkoutsFilter}
-                            />}
+                                {(status === "authenticated" && item.savers.indexOf(session?.user?._id) !== -1) && <UnsaveBtn 
+                                    userId={session?.user?._id}
+                                    savers={item.savers}
+                                    workoutId={item._id}
+                                    setWorkouts={setPublishedWorkouts}
+                                    filter={browseWorkoutsFilter}
+                                />}
 
-                        </WorkoutItem>
-                    ))}
-                </ul>
-            </div>
+                            </WorkoutItem>
+                        ))}
+                    </ul>
+                </div>
+            )}
+            
         </section>
     );
 }

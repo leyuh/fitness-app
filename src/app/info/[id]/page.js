@@ -6,6 +6,7 @@ import { calcTotalDuration } from "@/components/configs";
 import { formatDuration } from "@/components/configs";
 
 import { generateRests } from "@/components/configs"
+import Loader from "@/components/Loader";
 
 import BackBtn from "@/components/BackBtn";
 
@@ -23,6 +24,7 @@ export default function Info() {
     const { id } = useParams();
 
     const [workoutData, setWorkoutData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch("/api/workouts").then(res => {
@@ -38,10 +40,13 @@ export default function Info() {
 
                     console.log(workout);
                     setWorkoutData(workout);
+                    setLoading(false);
                 }
             })
         })
     }, [])
+
+    if (loading) return <Loader /> 
 
     return <section className="md:mt-8 w-[95vw] mx-auto md:w-full">
         <div className="bg-gradient overflow-hidden max-w-lg max-h-[75vh] mx-auto bg-background2 shadow-md p-4 text-center text-white">
@@ -72,7 +77,7 @@ export default function Info() {
                 data={formatDuration(calcTotalDuration(workoutData?.sets, workoutData?.durationType, false))}
             />
 
-            <ul className="max-w-xs mx-auto mt-4 mb-20 max-h-[35vh] overflow-y-scroll px-2">
+            <ul className="max-w-xs mx-auto mt-4 mb-20 max-h-[40vh] overflow-y-scroll px-2">
                 {workoutData?.sets.map((set, i) => (
                     <li key={i} className={`${set.name === "Rest" ? "text-gray-400" : ""} font-bold text-lg flex gap-4 my-2`}>
                         <span className="text-left w-full">{set.name}</span>
