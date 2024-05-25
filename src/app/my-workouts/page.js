@@ -25,7 +25,7 @@ export default function MyWorkouts() {
         fetch("/api/workouts").then(res => {
             res.json().then(data => {
                 setMyWorkouts(data.filter(myWorkoutsFilter));
-                //setTimeout(() => setLoading(false), 2000);
+
                 setLoading(false);
             })
         })

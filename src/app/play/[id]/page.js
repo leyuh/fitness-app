@@ -96,6 +96,7 @@ export default function Play() {
         }
     }, [totalTimeElapsed])
 
+
     useEffect(() => {
         console.log(currentSetIndex);
         setCurrentSetTimeRemaining(sets[currentSetIndex]?.duration);
@@ -120,10 +121,10 @@ export default function Play() {
             <h2 className="font-bold text-2xl text-white text-center">{sets[currentSetIndex]?.name}</h2>
 
             <div className="circle-div w-64 h-64 block mx-auto my-4">
-                <div className="shadow-xl rounded-full h-full w-full flex justify-center items-center" style={{
+                <div className={`shadow-xl rounded-full h-full w-full flex justify-center items-center`} style={{
                     backgroundImage: `conic-gradient(#ff6219 ${getCurrentSetProgressPercentage()}%, #1e2021 ${getCurrentSetProgressPercentage()}%)`
                 }}>
-                    <div className="rounded-full bg-background w-[65%] h-[65%] flex items-center justify-center">
+                    <div className="rounded-full bg-background w-[80%] h-[80%] flex items-center justify-center">
                         <h1 className="text-white text-7xl font-bold text-center">{currentSetTimeRemaining}</h1>
                     </div>
                 </div>
