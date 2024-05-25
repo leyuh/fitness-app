@@ -53,14 +53,13 @@ export default function Browse() {
                     }).map(workout => workout._id));
                 }
                 setPublishedWorkouts(data.filter(browseWorkoutsFilter).sort());
+                setLoading(false);
             })
         })
     }
 
     useEffect(() => {
-        fetchWorkouts(true).then(() => {
-            setLoading(false);
-        })
+        fetchWorkouts(true);
     }, [])
 
 
