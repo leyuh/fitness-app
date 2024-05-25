@@ -1,7 +1,12 @@
+"use client"
 import { cardio } from "ldrs";
+import { useEffect } from "react";
 export default function Loader () {
-    cardio.register();
-    
+
+    useEffect(() => {
+        cardio.register();
+    }, [])
+
     return <div className="mx-auto mt-8 block text-center">
         <l-cardio
             size="50"
