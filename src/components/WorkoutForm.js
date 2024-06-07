@@ -124,26 +124,46 @@ export default function WorkoutForm (props)  {
             <h2 className="w-40 text-primary text-sm md:text-lg font-bold">Sets</h2>
 
             <div className="sets-div">
-                <ul className="max-h-[20vh] overflow-y-scroll">
+                <ul className="max-h-[30vh] overflow-y-scroll">
                     {sets.map((set, i) => (
-                        <li key={i} className="mt-2 bg-background p-2 rounded-sm">
-                            <input
-                                type="text"
-                                id={set.name}
-                                value={set.name}
-                                placeholder={"name"}
-                                disabled={set.name === "Rest"}
-                                onChange={e => {
-                                    let updatedSets = [...sets];
-                                    updatedSets[i].name = e.target.value;
-                                    setSets(updatedSets);
-                                }}
-                                className={`rounded-sm py-1 mx-2 px-2 grow ${set.name === "Rest" && "text-white bg-background font-bold"}`}
-                            />
+                        <li key={i} className="mt-2 bg-background flex justify-between p-2 rounded-sm">
+
+                            <span className="flex relative">
+                                <input
+                                    type="text"
+                                    id={set.name}
+                                    value={set.name}
+                                    placeholder={"name"}
+                                    disabled={set.name === "Rest"}
+                                    onChange={e => {
+                                        let updatedSets = [...sets];
+                                        updatedSets[i].name = e.target.value;
+                                        setSets(updatedSets);
+                                    }}
+                                    className={`rounded-sm py-1 mx-2 md:w-[200px] w-[80%] px-2 ${durationType === "Custom" ? "w-[80%]" : "w-[100%]"} ${set.name === "Rest" && "text-white bg-background font-bold"}`}
+                                />
+
+                                
+
+                                {durationType === "Custom" && (
+                                    <input
+                                        type="number"
+                                        value={sets[i].duration}
+                                        placeholder={30}
+                                        onChange={e => {
+                                            let updatedSets = [...sets];
+                                            updatedSets[i].duration = e.target.value;
+                                            setSets(updatedSets);
+                                        }}
+                                        className="rounded-sm md:w-16 py-1 w-[20%] px-2 m-0"
+                                    />
+                                )}
+                            </span>
+                            
 
                             <button
                                 type="button"
-                                className="h-8 w-6 text-primary float-right"
+                                className="h-8 w-6 text-primary ml-2 float-right"
                                 onClick={() => {
                                     setSets(prev => [...prev].filter((set, j) => i !== j));
                                 }}
@@ -152,20 +172,6 @@ export default function WorkoutForm (props)  {
                                     dimensions={"w-6 h-full"}
                                 />
                             </button>
-
-                            {durationType === "Custom" && (
-                                <input
-                                    type="number"
-                                    value={sets[i].duration}
-                                    placeholder={30}
-                                    onChange={e => {
-                                        let updatedSets = [...sets];
-                                        updatedSets[i].duration = e.target.value;
-                                        setSets(updatedSets);
-                                    }}
-                                    className="rounded-sm py-1 px-2 mx-2 w-16 float-right"
-                                />
-                            )}
             
                         </li>
                     ))}
